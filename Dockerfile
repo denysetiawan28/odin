@@ -12,8 +12,8 @@ apk add --no-cache tzdata
 MAINTAINER titipaja.id
 
 #working directory
-ADD . /opt/voyager2
-WORKDIR /opt/voyager2
+ADD . /opt/odin
+WORKDIR /opt/odin
 
 #copy resource
 COPY . .
@@ -21,18 +21,18 @@ COPY . .
 #building
 #RUN go mod tidy
 RUN go mod download
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -ldflags="-w -s" -o voyager2-server
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -ldflags="-w -s" -o odin-server
 #RUN chmod a+x tokyo-server-final
 
 FROM scratch
 
-COPY --from=builder /opt/voyager2/resources /opt/voyager2/resources
-COPY --from=builder /opt/voyager2/voyager2-server /opt/voyager2/voyager2-server
+COPY --from=builder /opt/odin/resources /opt/odin/resources
+COPY --from=builder /opt/odin/odin-server /opt/odin/odin-server
 
-WORKDIR /opt/voyager2
+WORKDIR /opt/odin
 
 #expose network
 EXPOSE 9080
 
 #running
-CMD [ "/opt/voyager2/voyager2-server" ]
+CMD [ "/opt/odin/odin-server" ]

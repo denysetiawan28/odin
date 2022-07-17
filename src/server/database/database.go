@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
-	"freyja/src/server/config"
+	"odin/src/server/config"
 )
 
 type Database struct {

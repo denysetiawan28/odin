@@ -4,17 +4,19 @@ import (
 	"fmt"
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
+	echomiddleware "github.com/labstack/echo/v4/middleware"
 	"github.com/labstack/gommon/log"
 	"golang.org/x/net/context"
 	"net/http"
+	"odin/src/handler"
+	"odin/src/properties"
+	"odin/src/server/container"
+	"odin/src/server/middleware"
+	"odin/src/server/router"
 	"os"
 	"os/signal"
 	"regexp"
 	"time"
-	"voyager2/src/handler"
-	"voyager2/src/server/container"
-	"voyager2/src/server/middleware"
-	"voyager2/src/server/router"
 )
 
 type CustomValidator struct {
@@ -30,6 +32,14 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 
 func StartHttpServer(container *container.DefaultContainer) {
 	e := echo.New()
+	e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			cc := &properties.CustomContext{c}
+			return next(cc)
+		}
+	})
+	e.Use(echomiddleware.Logger())
+	e.Logger.SetLevel(log.INFO)
 	e.Logger.SetLevel(log.INFO)
 	validate := validator.New()
 	validate.RegisterValidation("ISO8601date", IsISO8601Date)

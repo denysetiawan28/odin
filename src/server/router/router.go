@@ -3,7 +3,7 @@ package router
 import (
 	"github.com/labstack/echo/v4"
 	"net/http"
-	"freyja/src/handler"
+	"odin/src/handler"
 )
 
 func InitializeRouter(server *echo.Echo, handler *handler.Handler) {
@@ -11,7 +11,6 @@ func InitializeRouter(server *echo.Echo, handler *handler.Handler) {
 		return c.JSON(http.StatusOK, "service up")
 	})
 
-//	g := server.Group("/api")
-
+	//	g := server.Group("/api")
 
 }

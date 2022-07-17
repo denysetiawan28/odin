@@ -2,14 +2,13 @@ package container
 
 import (
 	"fmt"
-	"freyja/src/server/config"
-	"freyja/src/server/database"
+	"odin/src/server/config"
+	"odin/src/server/database"
 )
 
 type DefaultContainer struct {
 	//#register config
-	Config                *config.DefaultConfig
-
+	Config *config.DefaultConfig
 }
 
 func IntializeContainer() *DefaultContainer {
@@ -19,11 +18,10 @@ func IntializeContainer() *DefaultContainer {
 	//initialize database
 	db := database.InitializeDatabase(config.Database)
 
-
 	row := db.Raw("SELECT 1").Row()
 	fmt.Println(row)
 
 	return &DefaultContainer{
-		Config:                config,
+		Config: config,
 	}
 }

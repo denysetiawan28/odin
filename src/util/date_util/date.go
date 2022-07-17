@@ -2,8 +2,8 @@ package date_util
 
 import (
 	"gopkg.in/guregu/null.v4"
+	"odin/src/constanta"
 	"time"
-	"voyager2/src/constanta"
 )
 
 func StringToNilTime(tm string) (resp null.Time) {

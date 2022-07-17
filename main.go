@@ -1,8 +1,8 @@
 package main
 
 import (
-	"voyager2/src/server"
-	"voyager2/src/server/container"
+	"odin/src/server"
+	"odin/src/server/container"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 	"github.com/spf13/viper"
-	"voyager2/src/constanta"
+	"odin/src/constanta"
 )
 
 func ConfigApps(path string) *DefaultConfig {

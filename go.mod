@@ -1,4 +1,4 @@
-module freyja
+module odin
 
 go 1.17
 

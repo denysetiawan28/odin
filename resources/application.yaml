@@ -1,0 +1,16 @@
+apps:
+  name: 'odin'
+  version: '1.0.0'
+server:
+  port: 9091
+database:
+  url: '34.142.143.176'
+  port: '5432'
+  databaseName: 'flux_backoffice'
+  username: 'app_thor'
+  password: 'app_thor'
+  schema: 'thor'
+  connectionTimeout: '20s'
+  maxIdleConnection: 5
+  maxOpenConnection: 10
+  debugMode: true
